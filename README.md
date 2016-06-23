@@ -14,3 +14,6 @@ Facebook Login
 CanCan
 Cloudinary for image manipulation
 capistrano for deploying
+
+
+...
