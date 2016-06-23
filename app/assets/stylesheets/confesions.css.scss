@@ -1,0 +1,85 @@
+// Place all the styles related to the Confesions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.confecion-small-body
+{
+  height: 120px;
+  overflow: hidden;
+}
+.confecion-small-header
+{
+  height: 60px;
+}
+.confecion-small-footer
+{
+  height: 41px;
+}
+.confesion{
+  background-color: white;
+  border: solid 1px;
+}
+.confesion h1{
+  font-size: 35px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.confesions-list
+{
+  padding: 40px 0 20px;
+}
+.the-title{
+  margin-bottom: 30px;
+}
+.grid-layout .confesion-item {
+  display: block;
+  margin-bottom: 20px;
+}
+.grid-layout .confesion-item .thumbnail {
+  text-align: center;
+  padding: 0;
+  color: #42454e;
+  text-shadow: 0 0 0 transparent;
+  overflow: hidden;
+}
+.grid-layout .confesion-item .thumbnail a {
+  color: #42454e;
+  text-decoration: none;
+}
+.thumbnail .caption {
+  padding: 9px;
+  color: #333;
+  height: 183px;
+}
+.grid-layout .confesion-item .thumbnail h3 {
+  margin: 10px 0 20px 0;
+  color: #42454e;
+  font-size: 20px;
+  height: 25px;
+}
+.thumbnail .caption:hover > h3{
+  color: green;
+}
+.grid-layout .confesion-item .thumbnail span.confesion-short-description {
+  font-style: italic;
+  font-family: 'Karla',sans-serif;
+  display: block;
+  margin-bottom: 10px;
+}
+.grid-layout .confesion-item .thumbnail .feature-list {
+  text-align: center;
+  padding-bottom: 25px;
+  margin-bottom: 15px;
+  padding-left: 5%;
+  border-bottom: 1px solid #eee;
+}
+.grid-layout .confesion-item .thumbnail .tags-group {
+  margin-bottom: 15px;
+  height: 30px;
+}
+.confesion-image-gallery{
+  height: 200px;
+  overflow-y: scroll;
+}
+.confesion-image{
+  margin-right: 10px;
+}

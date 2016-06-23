@@ -1,0 +1,25 @@
+<script type="text/javascript">
+  $(function(){
+    $("a[name='select_image']").on('click', function(e){
+        e.preventDefault();
+        var image_name = $(this).data('name') + "";
+        var image_url = $.cloudinary.url(image_name, { width: 200, height: 250, crop: 'pad' });
+        $('#image_prev').attr('src', image_url);
+        $('input[name="confesion[image]"]').val(image_name);
+    });
+  });
+</script>
+<div class="row">
+  <div class="alert alert-warning col-md-10 no-float center-block">
+    <h3>Al crear esta confesión está aceptando automáticamente los siguientes términos y condiciones de uso.</h3>
+    <p>
+      <%= render 'home/terms_text' %>
+    </p>
+  </div>
+	<div class="col-md-10 no-float center-block">
+		<div class="well">
+			<h1>Nueva Confesión</h1>
+			<%= render 'form' %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Confieselo, tu lugar para confesarte de manera anonima</title>
+  <meta name="msvalidate.01" content="513E3BD6DE7F6D8972DA089DB32A40FB">
+  <meta name="title" content="Confieselo, tu lugar para confesarte de manera anonima">
+  <meta name="description" content="Confieselo, tu lugar para confesarte de manera anonima">
+  <style>
+      * {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+      }
+      *:before, *:after {
+          -webkit-box-sizing: border-box;
+          -moz-box-sizing: border-box;
+          box-sizing: border-box;
+      }
+      .col-md-4 {
+          width: 33.3333333333%;
+      }
+      .col-md-10 {
+          width: 83.3333333333%;
+      }
+      .panel {
+          margin-bottom: 20px;
+          background-color: white;
+          border: 1px solid transparent;
+          border-radius: 4px;
+          -webkit-box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+          box-shadow: 0 1px 1px rgba(0,0,0,0.05);
+      }
+      .panel-default {
+          border-color: #dddddd;
+      }
+      .panel-heading {
+          padding: 10px 15px;
+          border-bottom: 1px solid transparent;
+          border-top-right-radius: 3px;
+          border-top-left-radius: 3px;
+      }
+      .confecion-small-header {
+          height: 60px;
+      }
+      .panel-default>.panel-heading {
+          color: #333333;
+          background-color: whitesmoke;
+          border-color: #dddddd;
+      }
+      .panel-body {
+          padding: 15px;
+      }
+      .confecion-small-body {
+          height: 120px;
+          overflow: hidden;
+      }
+      .panel-body:before, .panel-body:after {
+          content: " ";
+          display: table;
+      }
+      .panel-footer {
+          padding: 10px 15px;
+          background-color: whitesmoke;
+          border-top: 1px solid #dddddd;
+          border-bottom-right-radius: 3px;
+          border-bottom-left-radius: 3px;
+      }
+      .confecion-small-footer {
+          height: 41px;
+      }
+      a {
+          color: #428bca;
+          text-decoration: none;
+      }.label {
+           display: inline;
+           padding: .2em .6em .3em;
+           font-size: 75%;
+           font-weight: bold;
+           line-height: 1;
+           color: white;
+           text-align: center;
+           white-space: nowrap;
+           vertical-align: baseline;
+           border-radius: .25em;
+       }
+      .label-primary {
+          background-color: #428bca;
+      }
+      .no-float {
+          float: none !important;
+      }
+      .center-block {
+          display: block;
+          margin-left: auto;
+          margin-right: auto;
+      }
+      .row, section {
+          margin-left: -15px;
+          margin-right: -15px;
+      }
+    .well{
+        min-height: 20px;
+        padding: 19px;
+        margin-bottom: 20px;
+        background-color: whitesmoke;
+        border: 1px solid #e3e3e3;
+        border-radius: 4px;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+<h1>Descubre las confesiones de esta semana.</h1>
+
+<div>
+  <div class="row">
+    <div class="col-md-10 no-float center-block">
+      <div class="well">
+        <% @confesions.each do |confesion| %>
+            <%= render "/confesions/confesion_mail_preview", confesion: confesion %>
+        <% end %>
+        <div style="clear:both"></div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

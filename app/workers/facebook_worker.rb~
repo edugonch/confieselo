@@ -1,0 +1,9 @@
+# app/workers/facebook_worker.rb
+class FacebookWorker
+  include Sidekiq::Worker
+
+  def perform(id)
+    confesion = Confesion.find(id)
+    confesion.post_to_facebook
+  end
+end

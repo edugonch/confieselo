@@ -1,0 +1,14 @@
+<div id="star" class="star-container">
+  <% score_rounded = score.ceil %>
+  <% score_half = (score - score_rounded).ceil %>
+  <% score_bad = 5 - (score + score_half) %>
+  <% score_rounded.times do |score| %>
+    <img src="<%= image_url('star-on.png') %>" alt="<%= score %>"/>
+  <%end%>
+  <% if score_half > 0 %>
+    <img src="<%= image_url('star-half.png') %>" alt="<%= score %>"/>
+  <% end %>
+  <% score_bad.times do |score| %>
+    <img src="<%= image_url('star-off.png') %>" alt="<%= score_rounded + score %>"/>
+  <% end %>
+</div>

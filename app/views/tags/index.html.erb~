@@ -1,0 +1,25 @@
+<% content_for :keywords do %>
+    <%= @tags.join(',') %>
+<%end%>
+
+<div class="row">
+  <div class="col-md-10 no-float center-block">
+    <div class="well">
+      <ul class="nav nav-pills tags">
+        <% tag_cloud @tags, %w[label-default label-primary label-success label-info label-warning label-danger] do |tag, css_class, font| %>
+            <li class="label <%= css_class %>">
+              <a href="<%= tag_path(tag) %>" class="label <%= css_class %>" style="font-size: <%= font %>px" ><%= tag.name %> <span class="badge"><%= tag.confesions.count %></span></a>
+            </li>
+
+      <% end %>
+      </ul>
+    </div>
+   <div id="word-cloud">
+      <% @tags.each_with_index do |tag,index| %>
+         <a href="<%= tag_path(tag) %>" >
+		<span class="word-<%= index %>"><%= tag.name %></span>	
+	 </a>
+      <% end %>
+      </div>
+  </div>
+</div>

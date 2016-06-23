@@ -1,0 +1,54 @@
+<%= form_for(@confesion, html: {role: "form"}) do |f| %>
+    <div class="col-md-9">
+    <em>Selecciona una imagen</em>
+        <div class="panel panel-default">
+          <div class="panel-body confesion-image-gallery">
+            <% confesion_images.shuffle.each do |img| %>
+                <div class="col-xs-6 col-md-3">
+                  <a href="#" class="thumbnail" name="select_image" data-name="<%= img %>">
+                   <%= cl_image_tag(img, :width => 100, :height => 150, :crop => :pad) %>
+                  </a>
+                </div>
+            <% end %>
+            <div style="clear: both;"></div>
+          </div>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <a href="#" class="thumbnail">
+          <img src="<%= cloudinary_url(@confesion.image, :width => 200, :height => 250, :crop => :pad) %>" id="image_prev" alt=""/>
+          <%= f.hidden_field :image %>
+        </a>
+    </div>
+  <% if @confesion.errors.any? %>
+    <div style="clear: both;"></div>
+    <div id="error_explanation">
+      <h2>No se pudo salvar esta confesion por:</h2>
+      <ul>
+      <% @confesion.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    	<%= f.label :tittle, 'Título' %>
+    	<%= f.text_field :tittle, class: "form-control", placeholder: "Titulo" %>
+  </div>
+  <div class="form-group">
+    	<%= f.label :message, 'Confesión' %>
+    	<%= f.text_area :message, :rows => "10", class: "form-control", placeholder: "Confesión" %>
+  </div>
+  <div class="form-group">
+  	<%= f.label :Tags %> <small><em>Separadas por coma (,)</em></small>
+  	<%= f.collection_select :tags, @confesion.tags, :name, :name, {}, {multiple: true} %>
+  </div>
+  <div class="form-group">
+    <%= f.label "Ocultar tu nombre de usuario" %>
+    <%= f.check_box :anonymous %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Confesar", class: "btn btn-default" %>
+  </div>
+<% end %>

@@ -1,0 +1,16 @@
+<%= form_for [model,comment], :remote=>true, html: {role: 'form'},
+             update: { success: "comment_child_success", failure: "comment_child_error"} do |f| %>
+  <div class="col-xs-12">
+    <div id="answer_<%= comment.id %>"></div>
+    <%= f.text_field :text, class:"form-control"  %>
+    <div class="checkbox">
+      <label>
+        <%= check_box_tag 'send_anon_comment', 'yes', true %> Ocultar Nombre de Usuario
+      </label>
+      <input type="hidden" name="parent_id" value="<%= @parent_id %>">
+      <input type="hidden" name="tree" value="<%= @tree %>">
+      <button type="submit" class="btn btn-default">Responder</button>
+    </div>
+  </div>
+    <div style="clear:both;">&nbsp;</div>
+<% end %>

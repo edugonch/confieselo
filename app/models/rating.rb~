@@ -1,0 +1,6 @@
+class Rating
+  include Mongoid::Document
+  field :score, type: Integer, default: 0
+  embedded_in :confesion
+  embedded_in :user
+end

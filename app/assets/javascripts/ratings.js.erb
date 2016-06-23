@@ -1,0 +1,25 @@
+$(function(){
+        if(typeof(general_score) != "undefined")
+	{
+		$('#star').raty({
+		  readOnly: true,
+		  score: general_score,
+		  path: ''
+		});
+	}
+	
+	if(typeof(user_score) != "undefined")
+	{
+	  $('#user_star').raty({
+	    score: user_score,
+	    path: '',
+	    click: function(score, evt) {
+	      $.ajax({
+		url: rating_path,
+		type: 'PATCH',
+		data: { score: score }
+	      });
+	    }
+	  });
+	}
+});

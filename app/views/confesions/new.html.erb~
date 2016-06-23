@@ -1,0 +1,8 @@
+<div class="row">
+	<div class="col-md-8 no-float center-block">
+		<div class="well">
+			<h1>Nueva confesion</h1>
+			<%= render 'form' %>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,12 @@
+<div class="row">
+  <div class="grid-layout clearfix">
+    <div class="col-sm-12 col-md-12 the-title text-centered">
+      <h1>Resultados con "<%= params[:text] %>"</h1>
+    </div>
+      <% @confesions.each do |confesion| %>
+          <%= render 'confesion_preview', confesion: confesion %>
+      <% end %>
+      <div style="clear:both"></div>
+      <%= will_paginate @confesions, renderer: BootstrapPagination::Rails %>
+  </div>
+</div>

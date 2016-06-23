@@ -1,0 +1,48 @@
+source 'http://rubygems.org'
+ruby '2.0.0'
+gem 'rails', '4.1.0'
+gem 'sass-rails', '~> 4.0.3'
+gem 'uglifier', '>= 1.3.0'
+gem 'coffee-rails', '~> 4.0.0'
+gem 'jquery-rails'
+gem 'turbolinks'
+gem 'jbuilder', '~> 1.2'
+gem 'bootstrap-sass', '>= 3.0.0.0'
+gem 'cancan'
+gem 'devise'
+gem 'devise-i18n'
+gem 'figaro'
+gem 'mongoid', :github=>'mongoid/mongoid'
+gem 'puma'
+gem 'rolify'
+gem 'mongoid_search'
+gem 'dalli'
+#gem 'therubyracer', :platform=>:ruby
+gem 'jquery-turbolinks'
+gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'truncate_html'
+gem 'bootstrap-wysihtml5-rails'
+gem 'will_paginate', '~> 3.0'
+gem 'will_paginate_mongoid'
+gem 'will_paginate-bootstrap'
+gem 'will-paginate-i18n'
+gem 'rails_admin'
+gem "koala", "~> 1.8.0rc1"
+gem 'sidekiq'
+gem 'sinatra', '>= 1.3.0', :require => nil
+#gem 'mongoid_commentable'
+gem 'newrelic_rpm'
+group :development do
+  gem 'better_errors'
+  gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
+  gem 'quiet_assets'
+  gem 'rails_layout'
+  gem 'capistrano', '~> 3.0.1'
+# rails specific capistrano funcitons
+  gem 'capistrano-rails', '~> 1.1.0'
+# integrate bundler with capistrano
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-puma'
+  gem 'capistrano-sidekiq'
+end

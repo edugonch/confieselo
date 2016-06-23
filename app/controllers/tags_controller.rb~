@@ -1,0 +1,7 @@
+class TagsController < ApplicationController
+  # GET /tags
+  # GET /tags.json
+  def index
+    @tags = Tags.all
+  end
+end

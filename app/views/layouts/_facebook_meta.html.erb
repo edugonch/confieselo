@@ -1,0 +1,6 @@
+<meta property="og:title" content="<%= @confesion.tittle %>"/>
+<meta property="og:type" content="website"/>
+<meta property="og:site_name" content="Confieselo.com"/>
+<meta property="og:url" content="<%= confesion_url(@confesion) %>"/>
+<meta property="og:description" content="<%= strip_tags(truncate_html(@confesion.message, length: 190, omission: '...(continua)')).gsub(/\A"|"\Z/, '') %>"/>
+<meta property="og:image" content="<%= cloudinary_url(@confesion.image, :width => 300, :height => 350, :crop => :pad) %>"/>

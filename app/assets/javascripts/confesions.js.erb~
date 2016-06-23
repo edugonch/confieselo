@@ -1,0 +1,26 @@
+$(function(){
+
+	var confesion_tags = $('#confesion_tags');
+        if(confesion_tags.lenght > 0)
+	{
+		confesion_tags.tagsinput({
+	  		confirmKeys: [13, 188, 44]
+		});
+
+		var tags = new Bloodhound({
+		  datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d.name); },
+		  queryTokenizer: Bloodhound.tokenizers.whitespace,
+		  prefetch: tags_path
+		});
+
+		tags.initialize();
+
+		confesion_tags.tagsinput('input').typeahead(null, {
+		  displayKey: 'name',
+		  source: tags.ttAdapter()
+		}).bind('typeahead:selected', $.proxy(function (obj, datum) {  
+		  this.tagsinput('add', datum.value);
+		  this.tagsinput('input').typeahead('setQuery', '');
+		}, confesion_tags));
+	}
+});

@@ -1,0 +1,19 @@
+<%# add navigation links to this file %>
+<li><%= link_to 'Nueva Confesión', new_confesion_path %></li>
+<li><%= link_to 'Tags', tags_path %></li>
+<% if user_signed_in? %>
+  <li><%= link_to 'Editar cuenta', edit_user_registration_path %></li>
+<% else %>
+  <li><%= link_to 'Registrarse', new_user_registration_path %></li>
+<% end %>
+<% if user_signed_in? %>
+    <li><%= link_to 'Salir', destroy_user_session_path, :method=>'delete' %></li>
+<% else %>
+    <li><%= link_to 'Entrar', new_user_session_path %></li>
+<% end %>
+<form action="<%= search_path %>" class="navbar-form navbar-right" role="search">
+  <div class="form-group">
+    <input type="text" name="text" class="form-control search-full-text" placeholder="Buscar">
+  </div>
+  <button type="submit" class="btn btn-default">Buscar</button>
+</form>

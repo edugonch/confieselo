@@ -1,0 +1,7 @@
+class Commentable
+  include Mongoid::Document
+  include Mongoid::Attributes::Dynamic
+  embeds_many :comments, as: :commentable
+  accepts_nested_attributes_for :comments
+  recursively_embeds_many
+end

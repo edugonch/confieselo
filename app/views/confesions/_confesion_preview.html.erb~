@@ -1,0 +1,17 @@
+<div class="col-md-4">
+  <div class="panel panel-default">
+    <div class="panel-heading confecion-small-header">
+      <h4>
+        <a href="<%= confesion_path(confesion) %>" title="<%= confesion.tittle %>">
+          <%= truncate_html(confesion.tittle, length: 40, omission: '...') %>
+        </a>
+      </h4>
+    </div>
+    <div class="panel-body confecion-small-body">
+      <%= truncate_html(confesion.message, length: 190, omission: '...(continua)').html_safe %>
+    </div>
+    <div class="panel-footer confecion-small-footer">
+      <%= truncate_html(tags_list(confesion.tags), length: 50).html_safe %>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+module ConfesionsHelper
+	def tags_list(tags)
+		html = ""
+		tags.each do |tag|
+			html << "<span class='label label-primary'>#{tag.name}</span> "
+		end
+	end
+end

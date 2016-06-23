@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+      <url>
+            <loc>http://www.confieselo.com/</loc>
+            <lastmod><%= DateTime.now.to_s(:w3c) %></lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+      </url>
+      <url>
+            <loc>http://www.confieselo.com/tags</loc>
+            <lastmod><%= DateTime.now.to_s(:w3c) %></lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>1.0</priority>
+      </url>
+      <% @confesions.each do |confesion| %>
+        <url>
+            <loc><%= confesion_url(confesion) %></loc>
+            <lastmod><%= confesion.created_at.to_s(:w3c) %></lastmod>
+            <changefreq>never</changefreq>
+            <priority>1.0</priority>
+        </url>
+      <% end %>
+      <% @tags.each do |tag| %>
+        <url>
+            <loc><%= tag_url(tag) %></loc>
+            <lastmod><%= tag.created_at.to_s(:w3c) %></lastmod>
+            <changefreq>never</changefreq>
+            <priority>1.0</priority>
+        </url>
+      <% end %>
+</urlset>

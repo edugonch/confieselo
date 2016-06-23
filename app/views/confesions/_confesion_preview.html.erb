@@ -1,0 +1,29 @@
+<% cache [confesion, confesion.average_rating] do %>
+<div class="confesion-item col-sm-6 col-md-3">
+  <div class="thumbnail">
+    <a href="<%= confesion_path(confesion) %>">
+      <div class="thumbnail-img thumbscrubber smooth">
+        <span class="ts-inner">
+          <img src="<%= cloudinary_url(confesion.image, :width => 288, :height => 203, :crop => :pad) %>" alt="<%= confesion.tittle %>"/>
+        </span>
+      </div>
+    </a>
+    <div class="thumbnail-body">
+      <a href="<%= confesion_path(confesion) %>" title="<%= confesion.tittle %>">
+        <div class="caption">
+          <h3><%= truncate_html(confesion.tittle, length: 40, omission: '...') %></h3>
+          <span class="confesion-short-description">
+            <%= truncate_html(confesion.message, length: 190, omission: '...(continua)').gsub(/\<br\s*\/?\>/, "").html_safe %>
+          </span>
+        </div>
+        <div class="feature-list">
+          <%= render "layouts/stars", :score => confesion.average_rating %>
+        </div>
+      </a>
+      <div class="tags-group">
+        <%= truncate_html(tags_list(confesion.tags), length: 50).html_safe %>
+      </div>
+  </div>
+ </div>
+</div>
+<% end %>

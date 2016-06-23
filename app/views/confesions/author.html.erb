@@ -1,0 +1,12 @@
+<div class="row">
+	<div class="col-md-12 no-float center-block">
+		<div class="well">
+			<h1>Confesiones públicas de <%= @author.username %></h1>
+			    <% @confesions.each do |confesion| %>
+				    <%= render "confesion_preview", confesion: confesion %>
+			    <% end %>
+			<div style="clear:both"></div>
+			<%= will_paginate @confesions, renderer: BootstrapPagination::Rails %>
+		</div>
+	</div>
+</div>

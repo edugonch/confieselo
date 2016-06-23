@@ -1,0 +1,16 @@
+<% comments.each do |comment| %>
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= comment.author %></div>
+      <div class="panel-body">
+        <%= comment.text %>
+      </div>
+      <div class="panel-footer">
+        <% if tree < 2 && current_user %>
+            <a href="#" data-tree="<%= tree + 1 %>" data-parent="<%= comment.id %>" class="response_button"><span class="glyphicon glyphicon-comment"></span> Responder</a>
+            <div class="response_container" id="response_container_<%= comment.id %>">
+                <%= render('comments/comment', comments: comment.comments, tree: (tree + 1)) if comment.respond_to?("comments") %>
+            </div>
+        <% end %>
+      </div>
+    </div>
+<% end %>

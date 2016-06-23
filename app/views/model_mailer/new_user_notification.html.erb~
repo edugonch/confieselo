@@ -1,0 +1,5 @@
+<h1>Hola <%= @user.name %></h1>, 
+
+<p>Te damos la bienvenida a confesalo.com, el lugar para confesar libre y anónimamente lo que quieras.</p>
+
+<p>También te recordamos que el email lo requerimos solo para mantenerte actualizado de las respuestas a tus confesiones, tu email no será mostrado a nadie bajo ninguna circunstancia.</p>

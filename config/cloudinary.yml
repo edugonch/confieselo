@@ -1,0 +1,18 @@
+development:
+  cloud_name: confieselo
+  api_key: '552833345651638'
+  api_secret: KfDViDaurnF4TcoLMQfpOdYL-94
+  enhance_image_tag: true
+  static_image_support: false
+production:
+  cloud_name: confieselo
+  api_key: '552833345651638'
+  api_secret: KfDViDaurnF4TcoLMQfpOdYL-94
+  enhance_image_tag: true
+  static_image_support: false
+test:
+  cloud_name: confieselo
+  api_key: '552833345651638'
+  api_secret: KfDViDaurnF4TcoLMQfpOdYL-94
+  enhance_image_tag: true
+  static_image_support: false

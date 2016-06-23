@@ -1,0 +1,18 @@
+<% comments.each do |comment| %>
+    <div class="panel panel-default">
+      <div class="panel-heading"><%= comment.author %></div>
+      <div class="panel-body">
+        <%= comment.text %>
+      </div>
+      <div class="panel-footer">
+        <% if tree < 2 && current_user %>
+            <a href="#" data-tree="<%= tree + 1 %>" data-parent="<%= comment.id %>" class="response_button"><span class="glyphicon glyphicon-comment"></span> Responder</a>
+            <div class="response_container" id="response_container_<%= comment.id %>">
+              <% cache ["child_coments_v1", comment.child_comments] do %>
+                <%= render 'comments/comment', comments: comment.child_comments, tree: (tree + 1) %>
+              <%end%>
+            </div>
+        <% end %>
+      </div>
+    </div>
+<% end %>

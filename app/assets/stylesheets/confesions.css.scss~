@@ -1,0 +1,16 @@
+// Place all the styles related to the Confesions controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.confecion-small-body
+{
+  height: 120px;
+  overflow: hidden;
+}
+.confecion-small-header
+{
+  height: 20px;
+}
+.confecion-small-footer
+{
+  height: 41px;
+}

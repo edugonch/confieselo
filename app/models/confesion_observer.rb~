@@ -1,0 +1,5 @@
+class ConfesionObserver < ActiveRecord::Observer
+  def after_save(confesion)
+    expire_fragment('all_index_confesions')
+  end
+end

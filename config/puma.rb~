@@ -1,0 +1,14 @@
+rails_env = ENV['RAILS_ENV'] || 'development'
+
+threads 4,4
+workers 1
+
+stdout_redirect(
+    "/home/rails/current/log/puma.stdout.log",
+    "/home/rails/current/log/puma.stderr.log")
+
+
+pidfile "/tmp/puma/pid"
+state_path "/tmp/puma/state"
+
+activate_control_app

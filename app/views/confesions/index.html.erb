@@ -1,0 +1,15 @@
+<div class="row">
+	<div class="grid-layout clearfix">
+          <div class="col-sm-12 col-md-12 the-title text-centered">
+			<h1>Descubre las confesiones</h1>
+          </div>
+				<% cache ["v1_{@page}", @confesions] do %>
+			    		<% @confesions.each do |confesion| %>
+				    		<%= render "confesion_preview", confesion: confesion %>
+			    		<% end %>
+				
+					<div style="clear:both"></div>
+					<%= will_paginate @confesions, renderer: BootstrapPagination::Rails %>
+				<%end%>
+		</div>
+</div>

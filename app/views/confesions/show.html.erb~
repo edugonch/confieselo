@@ -1,0 +1,171 @@
+<% cache ['confecion_v1', @confesion] do %>
+<% content_for :facebook_meta do %>
+	<%= render "layouts/facebook_meta"%>
+<% end %>
+<% content_for :title do %>
+    <%= @confesion.tittle %>
+<%end%>
+<% content_for :description do %>
+    <%= strip_tags(truncate_html(@confesion.message, length: 190, omission: '...(continua)')).gsub(/\A"|"\Z/, '') %>
+<%end%>
+<% content_for :keywords do %>
+    <%= @confesion.tags.join(',') %>
+<%end%>
+<% content_for :script_varaibles do %>
+	var general_score = <%= @confesion.average_rating %>;
+	<%if current_user %>
+        var rating_path = "<%= rating_path(@rating) %>";
+        var user_score = <%= @rating.score %>;
+        <%end%>
+<%end%>
+<script type="text/javascript">
+  function success_alert(){
+	$('#comments-alerts').prepend('<div class="alert alert-success alert-dismissable">' +
+  	'	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+  	'	Comentario creado exitosamente' +
+	'</div>');
+  }
+  function error_lenght_alert(){
+      $('#comments-alerts').prepend('<div class="alert alert-danger alert-dismissable">' +
+              '	<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>' +
+              '	El comentario debe tener entre 10 y 500 caracteres ' +
+              '</div>');
+  }
+  function new_comment(form, comment){
+      $(form).closest('.response_container').prepend(comment);
+      success_alert();
+  }
+  function show_response_form(obj)
+  {
+      var parent_id = $(obj).data("parent");
+      var tree = $(obj).data("tree");
+      $.ajax({
+          data: {
+              'comment[text]': '',
+              'parent_id': parent_id,
+              'tree': tree
+          },
+          url: "<%= confesion_path(@confesion) %>/comments/new",
+          context: document.body
+      }).done(function(data) {
+                  $("#response_container_" + parent_id).prepend(data);
+      });
+
+  }
+  $(document).ready(function(){
+    $('#new_comment').on(
+	'ajax:success',function(data, comment, status){
+        new_comment($('#comments_container'), comment);
+        $("#comment_text").val('');
+    	}).on('ajax:error',function(xhr, status, error){
+      		    switch(status.status)
+                {
+                    case 422:
+                        error_lenght_alert();
+                        break;
+                }
+    	});
+      $(".response_container").on(
+              'ajax:success', '.new_comment',
+              function(data, comment, status){
+                  new_comment(this, comment);
+                  $(this).remove();
+              }
+      ).on('ajax:error', '.new_comment',function(xhr, status, error){
+                  switch(status.status)
+                  {
+                      case 422:
+                          error_lenght_alert();
+                          return false;
+                  }
+              });
+      $('.response_container').on('click', '.response_button', function(e){
+          e.preventDefault();
+          show_response_form(this);
+          $(this).hide();
+          return false;
+      });
+  });
+</script>
+<div class="row">
+	<div class="col-md-10 no-float center-block">
+		<div class="well">
+			<div class="col-md-12">
+              <div class="jumbotron confesion">
+                <div class="col-md-12">
+                	<% unless @confesion.anonymous %>
+                    	<emp>Autor: <strong><%=  link_to @confesion.user.username, author_confesions_path(@confesion.user.username) %> </strong></emp>
+                	<% end %>
+                </div>
+                <h1>
+                  <%= @confesion.tittle %>
+                </h1>
+                <div>
+                <%= @confesion.message.html_safe %>
+                </div>
+                <br/>
+                <section>
+                  <div class="col-md-12">
+                    <ins class="adsbygoogle"
+                         style="display:block"
+                         data-ad-client="ca-pub-1693900787541932"
+                         data-ad-slot="1108074033"
+                         data-ad-format="auto"></ins>
+                  </div>
+                </section>
+                <div>
+                <%= tags_list(@confesion.tags).html_safe %>
+                </div>
+              </div>
+
+			</div>
+			<div class="col-md-3">
+				<p>Calificación general</p>
+				<div id="star" class="star-container"></div>
+			</div>
+			<%if current_user && @confesion.user != current_user %>
+			<div class="col-md-3">
+				<p>Tu calificación</p>
+				<div id="user_star" class="star-container"></div>
+			</div>
+			<%end%>
+            <div class="col-md-6 pull-right">
+              <div class="fb-like" data-href="<%=confesion_url(@confesion)%>" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
+              <div class="g-plusone" data-annotation="none"></div>
+              <a href="https://twitter.com/share" class="twitter-share-button" data-lang="es" data-hashtags="confieselo">Twittear</a>
+            </div>
+			<div style="clear:both"></div>
+			<div id="comments">
+			<h4>Comentarios</h4>
+              <% cache ["current_user_v1", current_user] do %>
+                <% if current_user %>
+                      <div id="comments-alerts"></div>
+                      <h4>Deja un comentario</h4>
+                      <%= form_for [@confesion,Comment.new], :remote=>true,
+                                 update: { success: "comment_success", failure: "comment_error"} do |f| %>
+                          <div class="form-group">
+                            <%= f.text_area :text, :rows => "5", class: "form-control", placeholder: "Comentario" %>
+                          </div>
+                          <div class="form-group">
+                            <label>Comentario Anonimo <%= check_box_tag 'send_anon_comment', 'yes', true %></label>
+                          </div>
+                          <%= f.submit "Comenta", remote: true, class: "btn btn-success" %>
+                          <hr/>
+                      <%end%>
+                <% else %>
+                    <em><a href="<%= new_user_registration_path %>">Crea un nuevo usuario para participar(las respuestas son anonimas)</a></em>
+                <% end %>
+              <%end%>
+            <div class="response_container">
+              <div id="comments_container">
+              </div>
+                 <% cache ["coments_v1", @comments] do %>
+                 	<%= render 'comments/comment', comments: @comments, tree: 1 %>
+                 <%end%>
+            </div>
+			<%= will_paginate @comments, renderer: BootstrapPagination::Rails %>
+			</div>
+		</div>
+	</div>
+</div>
+<% end %>
