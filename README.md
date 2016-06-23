@@ -6,14 +6,14 @@ This was a little experiment I did, this is a page when users can make confesion
 I moved this project from bitbucket where I had it.
 
 
-Using:
+Using :
 
-rails '4.1.4'
-MongoDb with MongoId
-Facebook Login
-CanCan
-Cloudinary for image manipulation
-capistrano for deploying
+* rails '4.1.4'
+* MongoDb with MongoId
+* Facebook Login
+* CanCan
+* Cloudinary for image manipulation
+* capistrano for deploying
 
 
 ...
